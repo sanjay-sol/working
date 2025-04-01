@@ -1,0 +1,38 @@
+# Binaries
+/go-azure
+/go-azure.exe
+/go-azure.dSYM/
+*.exe
+*.exe~
+*.out
+*.test
+
+# Logs & temp files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# Local environment & credentials
+.env
+config.yaml
+config.json
+
+# Dependency directories
+vendor/
+bin/
+pkg/
+
+# IDE/editor files
+.vscode/
+.idea/
+*.iml
+
+# macOS system files
+.DS_Store
+
+# Local storage folder (offline uploads)
+offline_store/
+
+files/
