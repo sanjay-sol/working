@@ -82,7 +82,7 @@ DOCKER_IMAGE_NAME="uploader-app"
 AZURE_CONTAINER=${1:-default-container}  # 👈 First argument = container name
 AZURE_ACCOUNT_NAME=${AZURE_ACCOUNT_NAME:-"harvestedstorage2"}
 AZURE_ACCOUNT_KEY=${AZURE_ACCOUNT_KEY:-"bihW5fxPa/VdaATbn5iBgj+yd6XBmn6LQaXEjgHiThbJ3RcW+M6TtQc5Ml3cfihXruNRQRjzYGpU+AStU/OnHA=="}  # Update
-IMAGE_SOURCE=${IMAGE_SOURCE:-"/Users/sanjaysirangi/Desktop/go-azure-copy-working/images"}
+IMAGE_SOURCE=${IMAGE_SOURCE:-"/Users/sanjaysirangi/Desktop/mimic/images"}
 RETRY_PATH=${RETRY_PATH:-"/tmp/retry"}
 
 echo "🧪 Checking prerequisites..."

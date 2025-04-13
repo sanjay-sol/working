@@ -161,9 +161,9 @@ func LoadConfig() *Config {
 	return &Config{
 		AzureAccountName:  getEnvOrDefault("AZURE_ACCOUNT_NAME", "harvestedstorage2"),
 		AzureAccountKey:   getEnvOrDefault("AZURE_ACCOUNT_KEY", "bihW5fxPa/VdaATbn5iBgj+yd6XBmn6LQaXEjgHiThbJ3RcW+M6TtQc5Ml3cfihXruNRQRjzYGpU+AStU/OnHA=="),
-		Container:         getEnvOrDefault("AZURE_CONTAINER", "storage-container2"),
+		Container:         getEnvOrDefault("AZURE_CONTAINER", "storage-container"),
 		RetryPath:         getEnvOrDefault("RETRY_PATH", "/tmp/retry"),
-		ImageSource:       getEnvOrDefault("IMAGE_SOURCE", "/Users/sanjaysirangi/Desktop/go-azure-copy-working/images"),
+		ImageSource:       getEnvOrDefault("IMAGE_SOURCE", "/Users/sanjaysirangi/Desktop/mimic/images"),
 		RetryInterval:     getEnvIntOrDefault("RETRY_INTERVAL", 10),
 		QueueSize:         getEnvIntOrDefault("QUEUE_SIZE", 500),
 		MaxWorkers:        getEnvIntOrDefault("MAX_WORKERS", 100),
