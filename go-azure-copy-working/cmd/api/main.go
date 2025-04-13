@@ -112,8 +112,8 @@ func main() {
 
 		// Return success response
 		response := map[string]string{
-			"message":     "Container created successfully",
-			"jetson":   jetsonId,
+			"message":   "Container created successfully",
+			"jetson":    jetsonId,
 			"container": jetsonId,
 		}
 
@@ -125,9 +125,10 @@ func main() {
 	port := ":8080"
 	log.Println("🚀 API server running on http://localhost" + port)
 
-		// Wrap router with CORS middleware and start the server
-		log.Fatal(http.ListenAndServe(port, enableCORS(router)))
-	}
+	// Wrap router with CORS middleware and start the server
+	log.Fatal(http.ListenAndServe(port, enableCORS(router)))
+}
+
 // package main
 
 // import (
@@ -239,61 +240,61 @@ func main() {
 // 		w.Write(blobs)
 // 	}).Methods("GET", "OPTIONS")
 
-	// Register Jetson API
-	// router.HandleFunc("/api/register/{jetsonId}", func(w http.ResponseWriter, r *http.Request) {
-	// 	vars := mux.Vars(r)
-	// 	jetsonId := vars["jetsonId"]
-	// 	if jetsonId == "" {
-	// 		http.Error(w, "Jetson ID is required", http.StatusBadRequest)
-	// 		return
-	// 	}
+// Register Jetson API
+// router.HandleFunc("/api/register/{jetsonId}", func(w http.ResponseWriter, r *http.Request) {
+// 	vars := mux.Vars(r)
+// 	jetsonId := vars["jetsonId"]
+// 	if jetsonId == "" {
+// 		http.Error(w, "Jetson ID is required", http.StatusBadRequest)
+// 		return
+// 	}
 
-	// 	// Create Azure container for Jetson
-	// 	err := uploader.CreateContainer(context.Background(), azureClient, jetsonId)
-	// 	if err != nil {
-	// 		http.Error(w, fmt.Sprintf("Error creating container - Jetson might already be registered: %v", err), http.StatusInternalServerError)
-	// 		return
-	// 	}
+// 	// Create Azure container for Jetson
+// 	err := uploader.CreateContainer(context.Background(), azureClient, jetsonId)
+// 	if err != nil {
+// 		http.Error(w, fmt.Sprintf("Error creating container - Jetson might already be registered: %v", err), http.StatusInternalServerError)
+// 		return
+// 	}
 
-	// 	// Read and update the jetsons.json file
-	// 	jetsons, err := readJetsonsFile()
-	// 	if err != nil {
-	// 		http.Error(w, fmt.Sprintf("Error reading Jetsons file: %v", err), http.StatusInternalServerError)
-	// 		return
-	// 	}
+// 	// Read and update the jetsons.json file
+// 	jetsons, err := readJetsonsFile()
+// 	if err != nil {
+// 		http.Error(w, fmt.Sprintf("Error reading Jetsons file: %v", err), http.StatusInternalServerError)
+// 		return
+// 	}
 
-	// 	// Update the existing Jetson with the new container name
-	// 	var jetsonPath string
-	// 	for i, jetson := range jetsons {
-	// 		if jetson.Name == jetsonId {
-	// 			jetsons[i].Container = jetsonId
-	// 			jetsonPath = jetson.Config.Path // Extracting the path
-	// 			break
-	// 		}
-	// 	}
+// 	// Update the existing Jetson with the new container name
+// 	var jetsonPath string
+// 	for i, jetson := range jetsons {
+// 		if jetson.Name == jetsonId {
+// 			jetsons[i].Container = jetsonId
+// 			jetsonPath = jetson.Config.Path // Extracting the path
+// 			break
+// 		}
+// 	}
 
-	// 	// Save updated jetsons.json
-	// 	if err := writeJetsonsFile(jetsons); err != nil {
-	// 		http.Error(w, fmt.Sprintf("Error updating Jetsons file: %v", err), http.StatusInternalServerError)
-	// 		return
-	// 	}
+// 	// Save updated jetsons.json
+// 	if err := writeJetsonsFile(jetsons); err != nil {
+// 		http.Error(w, fmt.Sprintf("Error updating Jetsons file: %v", err), http.StatusInternalServerError)
+// 		return
+// 	}
 
-	// 	fmt.Println(jetsonPath)
+// 	fmt.Println(jetsonPath)
 
-	// 	if jetsonPath != "" {
-	// 		config.UpdateImageSource(jetsonPath)
-	// 	}
+// 	if jetsonPath != "" {
+// 		config.UpdateImageSource(jetsonPath)
+// 	}
 
-	// 	response := map[string]string{
-	// 		"message":   "Container created successfully",
-	// 		"jetson":    jetsonId,
-	// 		"container": jetsonId,
-	// 	}
+// 	response := map[string]string{
+// 		"message":   "Container created successfully",
+// 		"jetson":    jetsonId,
+// 		"container": jetsonId,
+// 	}
 
-	// 	w.Header().Set("Content-Type", "application/json")
-	// 	w.WriteHeader(http.StatusOK)
-	// 	json.NewEncoder(w).Encode(response)
-	// }).Methods("POST", "OPTIONS")
+// 	w.Header().Set("Content-Type", "application/json")
+// 	w.WriteHeader(http.StatusOK)
+// 	json.NewEncoder(w).Encode(response)
+// }).Methods("POST", "OPTIONS")
 // 	router.HandleFunc("/api/register/{jetsonId}", func(w http.ResponseWriter, r *http.Request) {
 // 		vars := mux.Vars(r)
 // 		jetsonId := vars["jetsonId"]

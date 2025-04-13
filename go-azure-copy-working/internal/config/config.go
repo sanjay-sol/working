@@ -118,15 +118,10 @@
 
 package config
 
-// var (
-// 	configInstance  *Config
-// 	once            sync.Once
-// 	imageSourceFile = "/Users/sanjaysirangi/Desktop/go-azure-copy-working/image_sources.json" // Separate file for image paths
-// )
-
-// type ImageSourceConfig struct {
-// 	Paths []string `json:"paths"`
-// }
+import (
+	"os"
+	"strconv"
+)
 
 type Config struct {
 	AzureAccountName  string `json:"azure_account_name"`
@@ -142,23 +137,42 @@ type Config struct {
 	RetryLimit        int    `json:"retry_limit"`
 }
 
-// LoadConfig initializes or loads the config, including ImageSource from JSON
+func getEnvOrDefault(key, defaultVal string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		return defaultVal
+	}
+	return val
+}
+
+func getEnvIntOrDefault(key string, defaultVal int) int {
+	valStr := os.Getenv(key)
+	if valStr == "" {
+		return defaultVal
+	}
+	val, err := strconv.Atoi(valStr)
+	if err != nil {
+		return defaultVal
+	}
+	return val
+}
+
 func LoadConfig() *Config {
 	return &Config{
-		AzureAccountName:  "harvestedstorage2",
-		AzureAccountKey:   "bihW5fxPa/VdaATbn5iBgj+yd6XBmn6LQaXEjgHiThbJ3RcW+M6TtQc5Ml3cfihXruNRQRjzYGpU+AStU/OnHA==",
-		Container:         "storage-container2",
-		RetryPath:         "/Users/sanjaysirangi/Desktop/go-azure-copy-working/retry",
-		ImageSource:       "/home/harvestedlabs/img_acquisition/dads/bin/images",
-		RetryInterval:     10,
-		QueueSize:         500,
-		MaxWorkers:        100,
-		TotalRetryWorkers: 10,
-		LogLevel:          "info",
-		RetryLimit:        3,
+		AzureAccountName:  getEnvOrDefault("AZURE_ACCOUNT_NAME", "harvestedstorage2"),
+		AzureAccountKey:   getEnvOrDefault("AZURE_ACCOUNT_KEY", "bihW5fxPa/VdaATbn5iBgj+yd6XBmn6LQaXEjgHiThbJ3RcW+M6TtQc5Ml3cfihXruNRQRjzYGpU+AStU/OnHA=="),
+		Container:         getEnvOrDefault("AZURE_CONTAINER", "storage-container2"),
+		RetryPath:         getEnvOrDefault("RETRY_PATH", "/tmp/retry"),
+		ImageSource:       getEnvOrDefault("IMAGE_SOURCE", "/Users/sanjaysirangi/Desktop/go-azure-copy-working/images"),
+		RetryInterval:     getEnvIntOrDefault("RETRY_INTERVAL", 10),
+		QueueSize:         getEnvIntOrDefault("QUEUE_SIZE", 500),
+		MaxWorkers:        getEnvIntOrDefault("MAX_WORKERS", 100),
+		TotalRetryWorkers: getEnvIntOrDefault("TOTAL_RETRY_WORKERS", 10),
+		LogLevel:          getEnvOrDefault("LOG_LEVEL", "info"),
+		RetryLimit:        getEnvIntOrDefault("RETRY_LIMIT", 3),
 	}
-
 }
+
 
 // // Load image sources from `image_sources.json`
 // func loadImageSources() []string {

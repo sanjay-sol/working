@@ -75,7 +75,7 @@ func UploadImage(ctx context.Context, azureClient *models.AzureClient, task mode
 	} else if strings.HasSuffix(task.BlobName, ".jpg") || strings.HasSuffix(task.BlobName, ".jpeg") {
 		contentType = "image/jpeg"
 	} else if strings.HasSuffix(task.BlobName, ".raw") {
-		contentType = "application/octet-stream" 
+		contentType = "application/octet-stream"
 	}
 
 	// ✅ Fix: Use correct `BlobHTTPHeaders` from `azblob/blob`
